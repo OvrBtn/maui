@@ -50,7 +50,7 @@ Console.WriteLine ("Executing: Force Sim Installation");
 ForceSimInstallation ();
 Console.WriteLine ("Done executing: Force Sim Installation");
 
-LogInstalledXcodes();
+LogInstalledXcodes (desiredXcode);
 
 var appleSdkOverride = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Library", "Preferences", "Xamarin", "Settings.plist");
 Item("Override Apple SDK Settings")
@@ -109,8 +109,11 @@ string TryMapBetaToStable(string betaVersion)
     return betaVersion;
 }
 
-void ForceSimInstallation ()
+void ForceSimInstallation (string version)
 {
+    Console.WriteLine ($"Executing: 'sudo xcode-select -s /Applications/Xcode_{version}.app/Contents/Developer'");
+    Exec ("sudo", "xcode-select", "-s", $"/Applications/Xcode_{version}.app/Contents/Developer");
+    Console.WriteLine ($"Done executing: 'sudo xcode-select -s /Applications/Xcode_{version}.app/Contents/Developer'");
     Console.WriteLine ("Executing: 'sudo xcrun xcodebuild -downloadPlatform iOS'");
     Exec ("sudo", "xcrun", "xcodebuild", "-downloadPlatform", "iOS");
     Console.WriteLine ("Done executing: 'sudo xcrun xcodebuild -downloadPlatform iOS'");
