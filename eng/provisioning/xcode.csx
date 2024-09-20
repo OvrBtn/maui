@@ -47,10 +47,10 @@ item.XcodeSelect()
 LogInstalledXcodes();
 
 Console.WriteLine ("Executing: Force Sim Installation");
-ForceSimInstallation ();
+ForceSimInstallation (desiredXcode);
 Console.WriteLine ("Done executing: Force Sim Installation");
 
-LogInstalledXcodes (desiredXcode);
+LogInstalledXcodes ();
 
 var appleSdkOverride = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Library", "Preferences", "Xamarin", "Settings.plist");
 Item("Override Apple SDK Settings")
