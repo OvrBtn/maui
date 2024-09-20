@@ -114,12 +114,19 @@ void ForceSimInstallation (string version = "16")
     Console.WriteLine ($"Executing: 'sudo xcode-select -s /Applications/Xcode_{version}.app/Contents/Developer'");
     Exec ("sudo", "xcode-select", "-s", $"/Applications/Xcode_{version}.app/Contents/Developer");
     Console.WriteLine ($"Done executing: 'sudo xcode-select -s /Applications/Xcode_{version}.app/Contents/Developer'");
+
+    Console.WriteLine ("Executing: 'sudo xcrun xcodebuild -runFirstLaunch'");
+    Exec ("sudo", "xcrun", "xcodebuild", "-runFirstLaunch");
+    Console.WriteLine ("Done executing: 'sudo xcrun xcodebuild -runFirstLaunch'");
+
     Console.WriteLine ("Executing: 'sudo xcrun xcodebuild -downloadPlatform iOS'");
     Exec ("sudo", "xcrun", "xcodebuild", "-downloadPlatform", "iOS");
     Console.WriteLine ("Done executing: 'sudo xcrun xcodebuild -downloadPlatform iOS'");
+
     Console.WriteLine ("Executing: 'sudo xcrun xcodebuild -downloadPlatform tvOS'");
     Exec ("sudo", "xcrun", "xcodebuild", "-downloadPlatform", "tvOS");
     Console.WriteLine ("Done executing: 'sudo xcrun xcodebuild -downloadPlatform tvOS'");
+    
     // This is a workaround for a bug in Xcode where we need to open the platforms panel for it to register the simulators.
 	Console.WriteLine ("Executing 'open xcpref://Xcode.PreferencePane.Component'");
 	Console.WriteLine ("Killing Xcode");
