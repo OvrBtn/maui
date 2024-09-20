@@ -47,7 +47,7 @@ item.XcodeSelect()
 LogInstalledXcodes();
 
 Console.WriteLine ("Executing: Force Sim Installation");
-ForceSimInstallation (desiredXcode);
+ForceSimInstallation ();
 Console.WriteLine ("Done executing: Force Sim Installation");
 
 LogInstalledXcodes ();
@@ -109,7 +109,7 @@ string TryMapBetaToStable(string betaVersion)
     return betaVersion;
 }
 
-void ForceSimInstallation (string version)
+void ForceSimInstallation (string version = "16")
 {
     Console.WriteLine ($"Executing: 'sudo xcode-select -s /Applications/Xcode_{version}.app/Contents/Developer'");
     Exec ("sudo", "xcode-select", "-s", $"/Applications/Xcode_{version}.app/Contents/Developer");
