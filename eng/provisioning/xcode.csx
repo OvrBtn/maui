@@ -35,12 +35,20 @@ else if (desiredXcode == "Stable")
 else
     item = Xcode(desiredXcode);
 
+item.XcodeSelect();
+
 Console.WriteLine("Selected version: {0}", item.Version);
 item.XcodeSelect() 
         .SimulatorRuntime(SimRuntime.iOS)
        // .SimulatorRuntime(SimRuntime.watchOS)
      //   .SimulatorRuntime(SimRuntime.visionOS);
         .SimulatorRuntime(SimRuntime.tvOS);
+
+LogInstalledXcodes();
+
+Console.WriteLine ("Executing: Force Sim Installation");
+ForceSimInstallation ();
+Console.WriteLine ("Done executing: Force Sim Installation");
 
 LogInstalledXcodes();
 
@@ -99,4 +107,25 @@ string TryMapBetaToStable(string betaVersion)
     }
 
     return betaVersion;
+}
+
+void ForceSimInstallation ()
+{
+    Console.WriteLine ("Executing: 'sudo xcrun xcodebuild -downloadPlatform iOS'");
+    Exec ("sudo", "xcrun", "xcodebuild", "-downloadPlatform", "iOS");
+    Console.WriteLine ("Done executing: 'sudo xcrun xcodebuild -downloadPlatform iOS'");
+    Console.WriteLine ("Executing: 'sudo xcrun xcodebuild -downloadPlatform tvOS'");
+    Exec ("sudo", "xcrun", "xcodebuild", "-downloadPlatform", "tvOS");
+    Console.WriteLine ("Done executing: 'sudo xcrun xcodebuild -downloadPlatform tvOS'");
+    // This is a workaround for a bug in Xcode where we need to open the platforms panel for it to register the simulators.
+	Console.WriteLine ("Executing 'open xcpref://Xcode.PreferencePane.Component'");
+	Console.WriteLine ("Killing Xcode");
+    Exec ("/usr/bin/pkill", "-9", "Xcode");
+	Console.WriteLine ("Opening Xcode preferences panel");
+    Exec ("/usr/bin/open", "xcpref://Xcode.PreferencePane.Component");
+	Console.WriteLine ("waiting 15 secs for Xcode to open the preferences panel");
+    Exec ("/bin/sleep", "15");
+	Console.WriteLine ("Killing Xcode");
+	Exec ("/usr/bin/pkill", "-9", "Xcode");
+	Console.WriteLine ("Executed 'open xcpref://Xcode.PreferencePane.Component'");
 }
