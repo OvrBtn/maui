@@ -120,7 +120,15 @@ void ForceSimInstallation ()
     // This is a workaround for a bug in Xcode where we need to open the platforms panel for it to register the simulators.
 	Console.WriteLine ("Executing 'open xcpref://Xcode.PreferencePane.Component'");
 	Console.WriteLine ("Killing Xcode");
-    Exec ("/usr/bin/pkill", "-9", "Xcode");
+    try
+    {
+         Exec ("/usr/bin/pkill", "-9", "Xcode");
+    }
+    catch (Exception e)
+    {
+        // Xcode is unlikely to be open so ignore the exit exception
+        Console.WriteLine (e);
+    }   
 	Console.WriteLine ("Opening Xcode preferences panel");
     Exec ("/usr/bin/open", "xcpref://Xcode.PreferencePane.Component");
 	Console.WriteLine ("waiting 15 secs for Xcode to open the preferences panel");
