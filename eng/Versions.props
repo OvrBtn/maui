@@ -51,10 +51,10 @@
     <!-- xamarin/xamarin-android -->
     <MicrosoftAndroidSdkWindowsPackageVersion>34.0.138</MicrosoftAndroidSdkWindowsPackageVersion>
     <!-- xamarin/xamarin-macios -->
-    <MicrosoftMacCatalystSdknet80_180PackageVersion>18.0.8302</MicrosoftMacCatalystSdknet80_180PackageVersion>
-    <MicrosoftmacOSSdknet80_150PackageVersion>15.0.8302</MicrosoftmacOSSdknet80_150PackageVersion>
-    <MicrosoftiOSSdknet80_180PackageVersion>18.0.8302</MicrosoftiOSSdknet80_180PackageVersion>
-    <MicrosofttvOSSdknet80_180PackageVersion>18.0.8302</MicrosofttvOSSdknet80_180PackageVersion>
+    <MicrosoftMacCatalystSdknet80_180PackageVersion>18.0.8303</MicrosoftMacCatalystSdknet80_180PackageVersion>
+    <MicrosoftmacOSSdknet80_150PackageVersion>15.0.8303</MicrosoftmacOSSdknet80_150PackageVersion>
+    <MicrosoftiOSSdknet80_180PackageVersion>18.0.8303</MicrosoftiOSSdknet80_180PackageVersion>
+    <MicrosofttvOSSdknet80_180PackageVersion>18.0.8303</MicrosofttvOSSdknet80_180PackageVersion>
     <MicrosoftMacCatalystSdkPackageVersion>$(MicrosoftMacCatalystSdknet80_180PackageVersion)</MicrosoftMacCatalystSdkPackageVersion>
     <MicrosoftmacOSSdkPackageVersion>$(MicrosoftmacOSSdknet80_150PackageVersion)</MicrosoftmacOSSdkPackageVersion>
     <MicrosoftiOSSdkPackageVersion>$(MicrosoftiOSSdknet80_180PackageVersion)</MicrosoftiOSSdkPackageVersion>
