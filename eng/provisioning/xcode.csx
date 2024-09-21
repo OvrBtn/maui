@@ -123,9 +123,15 @@ void ForceSimInstallation (string version = "16")
     Exec ("sudo", "xcrun", "xcodebuild", "-runFirstLaunch");
     Console.WriteLine ("Done executing: 'sudo xcrun xcodebuild -runFirstLaunch'");
 
-    Console.WriteLine ("Executing: 'xcrun xcodebuild -downloadAllPlatforms'");
-    Exec ("xcrun", "xcodebuild", "-downloadAllPlatforms");
-    Console.WriteLine ("Done executing: 'xcrun xcodebuild -downloadAllPlatforms'");
+    try {
+        Console.WriteLine ("Executing: 'xcrun xcodebuild -downloadAllPlatforms'");
+        Exec ("xcrun", "xcodebuild", "-downloadAllPlatforms");
+        Console.WriteLine ("Done executing: 'xcrun xcodebuild -downloadAllPlatforms'");
+    } catch (Exception e) {
+        // Why end up here?? who knows....
+        Console.WriteLine ("Error executing: 'xcrun xcodebuild -downloadAllPlatforms'");
+        Console.WriteLine (e);
+    }   
 
     // Console.WriteLine ("Executing: 'xcrun xcodebuild -downloadPlatform iOS'");
     // Exec ("xcrun", "xcodebuild", "-downloadPlatform", "iOS");
@@ -136,17 +142,15 @@ void ForceSimInstallation (string version = "16")
     // Console.WriteLine ("Done executing: 'xcrun xcodebuild -downloadPlatform tvOS'");
 
     // This is a workaround for a bug in Xcode where we need to open the platforms panel for it to register the simulators.
-	Console.WriteLine ("Executing 'open xcpref://Xcode.PreferencePane.Component'");
-	Console.WriteLine ("Killing Xcode");
-    try
-    {
-         Exec ("/usr/bin/pkill", "-9", "Xcode");
-    }
-    catch (Exception e)
-    {
+    try {
+        Console.WriteLine ("Executing 'open xcpref://Xcode.PreferencePane.Component'");
+	    Console.WriteLine ("Killing Xcode");
+        Exec ("/usr/bin/pkill", "-9", "Xcode");
+    } catch (Exception e) {
         // Xcode is unlikely to be open so ignore the exit exception
         Console.WriteLine (e);
-    }   
+    }
+
 	Console.WriteLine ("Opening Xcode preferences panel");
     Exec ("/usr/bin/open", "xcpref://Xcode.PreferencePane.Component");
 	Console.WriteLine ("waiting 15 secs for Xcode to open the preferences panel");
