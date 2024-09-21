@@ -113,12 +113,8 @@ string TryMapBetaToStable(string betaVersion)
     return betaVersion;
 }
 
-void ForceSimInstallation (string version = "16")
+void ForceSimInstallation ()
 {
-    Console.WriteLine ($"Executing: 'sudo xcode-select -s /Applications/Xcode_{version}.app/Contents/Developer'");
-    Exec ("sudo", "xcode-select", "-s", $"/Applications/Xcode_{version}.app/Contents/Developer");
-    Console.WriteLine ($"Done executing: 'sudo xcode-select -s /Applications/Xcode_{version}.app/Contents/Developer'");
-
     Console.WriteLine ("Executing: 'sudo xcrun xcodebuild -runFirstLaunch'");
     Exec ("sudo", "xcrun", "xcodebuild", "-runFirstLaunch");
     Console.WriteLine ("Done executing: 'sudo xcrun xcodebuild -runFirstLaunch'");
