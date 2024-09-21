@@ -14,6 +14,10 @@ if (string.IsNullOrEmpty(desiredXcode)) {
 //desiredXcode = desiredXcode.Replace("Xcode_", "").Replace("_", ".");
 Console.WriteLine("Desired Xcode: {0}", desiredXcode);
 
+Console.WriteLine ($"Executing: 'sudo xcode-select -s /Applications/Xcode_{desiredXcode}.app/Contents/Developer'");
+Exec ("sudo", "xcode-select", "-s", $"/Applications/Xcode_{desiredXcode}.app/Contents/Developer");
+Console.WriteLine ($"Done executing: 'sudo xcode-select -s /Applications/Xcode_{desiredXcode}.app/Contents/Developer'");
+
 // Find the best version
 Item item;
 if (desiredXcode == "Latest")
