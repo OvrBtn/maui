@@ -30,15 +30,9 @@ namespace Microsoft.Maui.Controls.Handlers.Items
 		{
 			base.Disconnect();
 
-			if (_headerViewFormsElement is not null)
-			{
-				_headerViewFormsElement.MeasureInvalidated -= OnFormsElementMeasureInvalidated;
-			}
+			_headerViewFormsElement?.MeasureInvalidated -= OnFormsElementMeasureInvalidated;
 
-			if (_footerViewFormsElement is not null)
-			{
-				_footerViewFormsElement.MeasureInvalidated -= OnFormsElementMeasureInvalidated;
-			}
+			_footerViewFormsElement?.MeasureInvalidated -= OnFormsElementMeasureInvalidated;
 
 			if (_headerUIView is MauiView hv)
 			{
