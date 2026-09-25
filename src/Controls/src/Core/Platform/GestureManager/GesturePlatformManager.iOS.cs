@@ -69,8 +69,7 @@ namespace Microsoft.Maui.Controls.Platform
 
 		internal void Disconnect()
 		{
-			if (ElementGestureRecognizers != null)
-				ElementGestureRecognizers.CollectionChanged -= _collectionChangedHandler;
+			ElementGestureRecognizers?.CollectionChanged -= _collectionChangedHandler;
 		}
 
 		public void Dispose()
@@ -93,8 +92,7 @@ namespace Microsoft.Maui.Controls.Platform
 					if (uiGestureRecognizer is null)
 						continue;
 
-					if (PlatformView != null)
-						PlatformView.RemoveGestureRecognizer(uiGestureRecognizer);
+					PlatformView?.RemoveGestureRecognizer(uiGestureRecognizer);
 					uiGestureRecognizer.ShouldReceiveTouch = null;
 					uiGestureRecognizer.Dispose();
 				}
@@ -698,10 +696,7 @@ namespace Microsoft.Maui.Controls.Platform
 					if (uiRecognizer is null)
 						continue;
 
-					if (PlatformView != null)
-					{
-						PlatformView.RemoveGestureRecognizer(uiRecognizer);
-					}
+					PlatformView?.RemoveGestureRecognizer(uiRecognizer);
 
 					if (TryGetTapGestureRecognizer(gestureRecognizer, out TapGestureRecognizer? tapGestureRecognizer) &&
 						tapGestureRecognizer != null)
