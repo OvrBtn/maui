@@ -164,11 +164,19 @@ namespace Microsoft.Maui.Graphics.Platform
 					_context.SetFillColor(1, 1, 1, 1); // White
 				}
 
+
+<<<<<<< TODO: Unmerged change from project 'Graphics(net9.0-maccatalyst18.0)', Before:
 				if (_gradient != null)
 				{
 					_gradient.Dispose();
 					_gradient = null;
 				}
+=======
+				_gradient?.Dispose();
+				_gradient = null;
+>>>>>>> After
+				_gradient?.Dispose();
+				_gradient = null;
 
 				_fillPattern = null;
 				_fillImage = null;
@@ -314,11 +322,19 @@ namespace Microsoft.Maui.Graphics.Platform
 				paint = Colors.White.AsPaint();
 			}
 
+
+<<<<<<< TODO: Unmerged change from project 'Graphics(net9.0-maccatalyst18.0)', Before:
 			if (_gradient != null)
 			{
 				_gradient.Dispose();
 				_gradient = null;
 			}
+=======
+			_gradient?.Dispose();
+			_gradient = null;
+>>>>>>> After
+			_gradient?.Dispose();
+			_gradient = null;
 
 			_fillPattern = null;
 			_fillImage = null;
@@ -406,11 +422,11 @@ namespace Microsoft.Maui.Graphics.Platform
 		}
 
 		// Normalize the angle to be between 0 and 2PI
-        float NormalizeAngle(float angle)
-        {
-            var twoPi = MathF.PI * 2;
-            return (angle % twoPi + twoPi) % twoPi;
-        }
+		float NormalizeAngle(float angle)
+		{
+			var twoPi = MathF.PI * 2;
+			return (angle % twoPi + twoPi) % twoPi;
+		}
 
 		protected override void PlatformDrawArc(float x, float y, float width, float height, float startAngle, float endAngle, bool clockwise, bool close)
 		{
@@ -1342,11 +1358,8 @@ namespace Microsoft.Maui.Graphics.Platform
 		{
 			var success = base.RestoreState();
 
-			if (_gradient != null)
-			{
-				_gradient.Dispose();
-				_gradient = null;
-			}
+			_gradient?.Dispose();
+			_gradient = null;
 
 			_fillPattern = null;
 			_fillImage = null;
