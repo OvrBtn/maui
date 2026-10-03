@@ -422,10 +422,7 @@ namespace Microsoft.Maui.Controls.Platform
 						Window? window = activity.GetWindow() as Window;
 						EventHandler? eventHandler = null;
 						eventHandler = OnPopCanceled;
-						if (window is not null)
-						{
-							window.PopCanceled += eventHandler;
-						}
+						window?.PopCanceled += eventHandler;
 
 						var preventBackPropagation = false;
 
