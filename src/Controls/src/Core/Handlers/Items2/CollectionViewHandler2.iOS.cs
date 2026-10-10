@@ -155,7 +155,7 @@ namespace Microsoft.Maui.Controls.Handlers.Items2
 
 			var itemSizingStrategy = ItemsView.ItemSizingStrategy;
 			var itemsLayout = ItemsView.ItemsLayout;
-		
+
 			SubscribeToItemsLayoutPropertyChanged(itemsLayout);
 
 			if (itemsLayout is GridItemsLayout gridItemsLayout)
@@ -199,9 +199,7 @@ namespace Microsoft.Maui.Controls.Handlers.Items2
 
 		void SubscribeToItemsLayoutPropertyChanged(IItemsLayout itemsLayout)
 		{
-			if(itemsLayout is not null)
-			{
-				itemsLayout.PropertyChanged += (sender, args) =>
+			itemsLayout?.PropertyChanged += (sender, args) =>
 				{
 					if (args.PropertyName == nameof(ItemsLayout.SnapPointsAlignment) ||
 						args.PropertyName == nameof(ItemsLayout.SnapPointsType) ||
@@ -214,7 +212,6 @@ namespace Microsoft.Maui.Controls.Handlers.Items2
 						UpdateLayout();
 					}
 				};
-			}
 		}
 	}
 }
