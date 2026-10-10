@@ -208,8 +208,7 @@ namespace Microsoft.Maui.Controls.Handlers.Compatibility
 				action.PropertyChanged += changed;
 				action.PropertyChanging += changing;
 
-				if (action.Command != null)
-					action.Command.CanExecuteChanged += commandChanged;
+				action.Command?.CanExecuteChanged += commandChanged;
 
 				if (!((IMenuItemController)action).IsEnabled)
 					item.SetEnabled(false);
@@ -287,8 +286,7 @@ namespace Microsoft.Maui.Controls.Handlers.Compatibility
 
 			if (e.PropertyName == MenuItem.CommandProperty.PropertyName)
 			{
-				if (action.Command != null)
-					action.Command.CanExecuteChanged += OnContextActionCommandCanExecuteChanged;
+				action.Command?.CanExecuteChanged += OnContextActionCommandCanExecuteChanged;
 			}
 			else
 				_actionModeNeedsUpdates = true;
@@ -300,8 +298,7 @@ namespace Microsoft.Maui.Controls.Handlers.Compatibility
 
 			if (e.PropertyName == MenuItem.CommandProperty.PropertyName)
 			{
-				if (action.Command != null)
-					action.Command.CanExecuteChanged -= OnContextActionCommandCanExecuteChanged;
+				action.Command?.CanExecuteChanged -= OnContextActionCommandCanExecuteChanged;
 			}
 		}
 
@@ -326,8 +323,7 @@ namespace Microsoft.Maui.Controls.Handlers.Compatibility
 				action.PropertyChanged -= changed;
 				action.PropertyChanging -= changing;
 
-				if (action.Command != null)
-					action.Command.CanExecuteChanged -= commandChanged;
+				action.Command?.CanExecuteChanged -= commandChanged;
 			}
 			ContextView = null;
 
