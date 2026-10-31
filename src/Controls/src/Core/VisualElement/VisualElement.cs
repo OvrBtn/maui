@@ -2328,8 +2328,7 @@ namespace Microsoft.Maui.Controls
 
 			if (_unloaded is null && _loaded is null)
 			{
-				if (newWindow is not null)
-					newWindow.HandlerChanged -= OnWindowHandlerChanged;
+				newWindow?.HandlerChanged -= OnWindowHandlerChanged;
 
 #if PLATFORM
 				_loadedUnloadedToken?.Dispose();
@@ -2354,8 +2353,7 @@ namespace Microsoft.Maui.Controls
 
 			if (!_watchingPlatformLoaded)
 			{
-				if (newWindow is not null)
-					newWindow.HandlerChanged += OnWindowHandlerChanged;
+				newWindow?.HandlerChanged += OnWindowHandlerChanged;
 
 				_watchingPlatformLoaded = true;
 			}

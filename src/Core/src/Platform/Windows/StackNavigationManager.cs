@@ -34,8 +34,7 @@ namespace Microsoft.Maui.Platform
 		public virtual void Connect(IStackNavigation navigationView, Frame navigationFrame)
 		{
 			_connected = true;
-			if (_navigationFrame != null)
-				_navigationFrame.Navigated -= OnNavigated;
+			_navigationFrame?.Navigated -= OnNavigated;
 
 			FirePendingNavigationFinished();
 
@@ -50,18 +49,14 @@ namespace Microsoft.Maui.Platform
 		public virtual void Disconnect(IStackNavigation navigationView, Frame navigationFrame)
 		{
 			_connected = false;
-			if (_navigationFrame != null)
-				_navigationFrame.Navigated -= OnNavigated;
+			_navigationFrame?.Navigated -= OnNavigated;
 
 			FirePendingNavigationFinished();
 			_navigationFrame = null;
 			NavigationView = null;
 
-			if (_previousContent is not null)
-			{
-				_previousContent.Content = null;
-				_previousContent = null;
-			}
+			_previousContent?.Content = null;
+			_previousContent = null;
 		}
 
 		public virtual void NavigateTo(NavigationRequest args)
@@ -172,11 +167,8 @@ namespace Microsoft.Maui.Platform
 
 				// There's some bug in our code, or the lifecycle of ContentControl, that is causing the content to
 				// never be removed from the parent...
-				if (_previousContent is not null)
-				{
-					_previousContent.Content = null;
-					_previousContent = null;
-				}
+				_previousContent?.Content = null;
+				_previousContent = null;
 
 				page.Content = presenter;
 			}
