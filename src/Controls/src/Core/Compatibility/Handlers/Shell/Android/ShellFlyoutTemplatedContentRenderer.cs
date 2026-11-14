@@ -265,10 +265,7 @@ namespace Microsoft.Maui.Controls.Platform.Compatibility
 				oldHeaderView.Dispose();
 			}
 
-			if (_flyoutHeader != null)
-			{
-				_flyoutHeader.MeasureInvalidated -= OnFlyoutHeaderMeasureInvalidated;
-			}
+			_flyoutHeader?.MeasureInvalidated -= OnFlyoutHeaderMeasureInvalidated;
 
 			_flyoutHeader = ((IShellController)_shellContext.Shell).FlyoutHeader;
 			if (_flyoutHeader != null)
@@ -605,19 +602,16 @@ namespace Microsoft.Maui.Controls.Platform.Compatibility
 			if (_shellContext?.Shell != null)
 				_shellContext.Shell.PropertyChanged -= OnShellPropertyChanged;
 
-			if (_flyoutHeader != null)
-				_flyoutHeader.MeasureInvalidated -= OnFlyoutHeaderMeasureInvalidated;
+			_flyoutHeader?.MeasureInvalidated -= OnFlyoutHeaderMeasureInvalidated;
 
 			_flyoutHeader = null;
 
-			if (_footerView != null)
-				_footerView.View = null;
+			_footerView?.View = null;
 
 			_headerView?.Disconnect();
 			DisconnectRecyclerView();
 
-			if (_contentView != null)
-				_contentView.View = null;
+			_contentView?.View = null;
 		}
 
 		protected override void Dispose(bool disposing)
@@ -645,11 +639,9 @@ namespace Microsoft.Maui.Controls.Platform.Compatibility
 				if (View != null && View is ShellFlyoutLayout sfl)
 					sfl.LayoutChanging -= OnFlyoutViewLayoutChanging;
 
-				if (_headerView != null)
-					_headerView.LayoutChange -= OnHeaderViewLayoutChange;
+				_headerView?.LayoutChange -= OnHeaderViewLayoutChange;
 
-				if (_contentView != null)
-					_contentView.View = null;
+				_contentView?.View = null;
 
 				_flyoutContentView?.Dispose();
 				_headerView?.Dispose();
@@ -685,8 +677,7 @@ namespace Microsoft.Maui.Controls.Platform.Compatibility
 
 			void Initialize(View view)
 			{
-				if (view != null)
-					view.PropertyChanged += OnViewPropertyChanged;
+				view?.PropertyChanged += OnViewPropertyChanged;
 			}
 
 			void OnViewPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -745,11 +736,8 @@ namespace Microsoft.Maui.Controls.Platform.Compatibility
 
 			internal void Disconnect()
 			{
-				if (View != null)
-				{
-					View.PropertyChanged -= OnViewPropertyChanged;
-					View = null;
-				}
+				View?.PropertyChanged -= OnViewPropertyChanged;
+				View = null;
 			}
 
 			internal void SetFlyoutHeaderBehavior(FlyoutHeaderBehavior flyoutHeaderBehavior)
