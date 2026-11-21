@@ -81,10 +81,7 @@ namespace Microsoft.Maui.Controls.Handlers.Items
 
 			if (disposing)
 			{
-				if (_itemsLayout != null)
-				{
-					_itemsLayout.PropertyChanged -= LayoutOnPropertyChanged;
-				}
+				_itemsLayout?.PropertyChanged -= LayoutOnPropertyChanged;
 			}
 
 			base.Dispose(disposing);
